@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "./node_modules/mocha/bin/mocha test/*.js",
 		"postinstall": "npm run doc",
-		"doc": "./node_modules/.bin/jsdoc src/*.js"
+		"doc": "./node_modules/.bin/jsdoc src/*.js -d doc"
 	},
 	"keywords": [
 		"Polynomial",
