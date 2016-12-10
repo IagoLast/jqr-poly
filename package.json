@@ -1,11 +1,10 @@
 {
 	"name": "jqr-poly",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Polynomial arithmetics in node",
 	"main": "src/index.js",
 	"scripts": {
 		"test": "./node_modules/mocha/bin/mocha test/*.js",
-		"postinstall": "npm run doc",
 		"doc": "./node_modules/.bin/jsdoc src/*.js -d doc"
 	},
 	"keywords": [
