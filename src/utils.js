@@ -1,9 +1,5 @@
 function newZerosArray(length) {
-	let array = new Array(length);
-	for (let i = 0; i < array.length; i++) {
-		array[i] = 0;
-	}
-	return array;
+	return new Array(length).fill(0);
 }
 
 function calculateCoefficents(coefficientsArray) {

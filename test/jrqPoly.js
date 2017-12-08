@@ -1,5 +1,5 @@
 const assert = require('assert');
-const jqrPoly = require('../src/jqrPoly.js');
+const jqrPoly = require('../src/index.js');
 
 describe('jqrPoly', () => {
 	describe('create()', () => {

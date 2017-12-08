@@ -1,4 +1,4 @@
-const jqrPoly = require('../src/jqrPoly.js');
+const jqrPoly = require('../src/index.js');
 const assert = require('assert');
 
 describe('polynomial', () => {
