@@ -72,7 +72,7 @@ class Polynomial {
 		if (x === 1) {
 			return this.coefficients.reduce((acum, coefficient) => this.field.add(acum, coefficient), 0);
 		}
-		return this.coefficients.reduce((acum, coefficient) => this.field.add(this.field.multiply(acum, x), coefficient), 0);
+		return this.coefficients.reduce((acum, coefficient) => this.field.add(this.field.mul(acum, x), coefficient), 0);
 	}
 
 	/**
@@ -114,7 +114,7 @@ class Polynomial {
 		if (scalar === 1) {
 			return this;
 		}
-		return _createPolynomial(this.coefficients.map(coefficient => this.field.multiply(coefficient, scalar)), this.field);
+		return _createPolynomial(this.coefficients.map(coefficient => this.field.mul(coefficient, scalar)), this.field);
 	}
 
 	/**
@@ -132,7 +132,7 @@ class Polynomial {
 		for (let i = 0; i < this.coefficients.length; i++) {
 			for (let j = 0; j < polynomial.coefficients.length; j++) {
 				let p1 = newCoefficients[i + j];
-				let p2 = this.field.multiply(this.coefficients[i], polynomial.coefficients[j]);
+				let p2 = this.field.mul(this.coefficients[i], polynomial.coefficients[j]);
 				newCoefficients[i + j] = this.field.add(p1, p2);
 			}
 		}
@@ -159,7 +159,7 @@ class Polynomial {
 
 		let newCoefficients = utils.newZerosArray(this.coefficients.length + degree);
 		this.coefficients.forEach((element, i) => {
-			newCoefficients[i] = this.field.multiply(element, coefficientParm);
+			newCoefficients[i] = this.field.mul(element, coefficientParm);
 		});
 		return _createPolynomial(newCoefficients, this.field);
 	}
@@ -239,7 +239,7 @@ class Polynomial {
 
 		while (!remainder.isZero() && (remainder.getDegree() >= other.getDegree())) {
 			let termLiteral = remainder.getDegree() - other.getDegree();
-			let termCoeff = this.field.divide(remainder.getCoefficient(remainder.getDegree()), other.getCoefficient(other.getDegree()));
+			let termCoeff = this.field.div(remainder.getCoefficient(remainder.getDegree()), other.getCoefficient(other.getDegree()));
 			let term = this.buildMonomial(termLiteral, termCoeff, this.field);
 			quotient = quotient.add(term);
 			remainder = remainder.sub(term.multiply(other));
