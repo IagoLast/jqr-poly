@@ -1,23 +1,23 @@
 {
-	"name": "jqr-poly",
-	"version": "0.0.1",
-	"description": "Polynomial arithmetics in node",
-	"main": "src/index.js",
-	"scripts": {
-		"test": "./node_modules/mocha/bin/mocha test/*.js",
-		"doc": "./node_modules/.bin/jsdoc src/*.js -d doc"
-	},
-	"keywords": [
-		"Polynomial",
-		"Qr Code",
-		"arithmetics",
-		"Galois field"
-	],
-	"author": "@iagolast",
-	"license": "MIT",
-	"devDependencies": {
-		"eslint": "^3.9.1",
-		"jsdoc": "^3.4.3",
-		"mocha": "^3.1.2"
-	}
+  "name": "jqr-poly",
+  "version": "1.0.0",
+  "description": "Polynomial arithmetics in node",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/*.js",
+    "doc": "./node_modules/.bin/jsdoc src/*.js -d doc"
+  },
+  "keywords": [
+    "Polynomial",
+    "Qr Code",
+    "arithmetics",
+    "Galois field"
+  ],
+  "author": "@iagolast",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.9.1",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.1.2"
+  }
 }
