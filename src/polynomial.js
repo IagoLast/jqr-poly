@@ -88,7 +88,7 @@ class Polynomial {
 			throw new RangeError('Monomial degree can\'t be lower than zero');
 		}
 		if (coefficient === 0) {
-			return this.field.zero;
+			return this.field.zero();
 		}
 		let coefficients = utils.newZerosArray(degree + 1);
 		coefficients[0] = coefficient;
@@ -109,7 +109,7 @@ class Polynomial {
 	 */
 	multiplyScalar(scalar) {
 		if (scalar === 0) {
-			return this.field.zero;
+			return this.field.zero();
 		}
 		if (scalar === 1) {
 			return this;
@@ -124,7 +124,7 @@ class Polynomial {
 	 */
 	multiplyPolynomial(polynomial) {
 		if (this.isZero() || polynomial.isZero()) {
-			return this.field.zero;
+			return this.field.zero();
 		}
 
 		let newCoefficients = utils.newZerosArray(this.coefficients.length + polynomial.coefficients.length - 1);
@@ -154,7 +154,7 @@ class Polynomial {
 		}
 
 		if (coefficientParm === 0) {
-			return this.field.zero;
+			return this.field.zero();
 		}
 
 		let newCoefficients = utils.newZerosArray(this.coefficients.length + degree);
@@ -234,7 +234,7 @@ class Polynomial {
 			throw 'Divide by 0';
 		}
 
-		var quotient = this.field.zero;
+		var quotient = this.field.zero();
 		var remainder = this;
 
 		while (!remainder.isZero() && (remainder.getDegree() >= other.getDegree())) {

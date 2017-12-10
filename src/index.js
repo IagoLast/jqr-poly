@@ -37,4 +37,4 @@ function create(coefficients, field) {
 	return new PolynomialClass(coefficients, field);
 }
 
-defaultField.zero = create([0], defaultField);
+defaultField.zero = () => create([0], defaultField);

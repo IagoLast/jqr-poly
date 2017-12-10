@@ -1,6 +1,7 @@
 const jqrPoly = require('../src/index.js');
 const assert = require('assert');
 
+
 describe('polynomial', () => {
 	describe('isZero()', () => {
 		it('isZero(1X^2 + 3x^1 + 2x^0) --> false', () => {
@@ -16,6 +17,7 @@ describe('polynomial', () => {
 			assert.equal(poly.isZero(), true);
 		});
 	});
+
 	describe('evaluate()', () => {
 		it('1X^2 + 1x^0 evaluate(0) --> 1', () => {
 			let poly = jqrPoly.create([2, 0, 1]);
@@ -46,6 +48,7 @@ describe('polynomial', () => {
 			assert.equal(poly.evaluate(2), 42);
 		});
 	});
+
 	describe('multiplyScalar()', () => {
 		it('should be called when parameter is a number', () => {
 			let called = false;
@@ -59,12 +62,13 @@ describe('polynomial', () => {
 		});
 		it('should return zero when parameter is zero', () => {
 			let poly = jqrPoly.create([1, 0, 2]);
-			assert.deepEqual(poly.multiply(0), poly.field.zero);
+			assert.deepEqual(poly.multiply(0), poly.field.zero());
 		});
 		it('should return the polynomial when parameter is one', () => {
 			let poly = jqrPoly.create([1, 0, 2]);
 			assert.deepEqual(poly.multiply(1), poly);
 		});
+
 		describe('should return a new polynomial whose each coefficient was multiplied by the scalar', () => {
 			it('3 * (0x^2 + 0x^1 + 0x^0) = 0x^2 + 0x^1 + 0x^0', () => {
 				let poly = jqrPoly.create([0, 0, 0]);
@@ -80,11 +84,12 @@ describe('polynomial', () => {
 			});
 		});
 	});
+
 	describe('multiplyPolynomial()', () => {
 		it('Should return zero when multiplying by zero', () => {
 			let p1 = jqrPoly.create([1, 3, 2]);
 			let p2 = jqrPoly.create([0]);
-			assert.equal(p1.multiplyPolynomial(p2), p1.field.zero);
+			assert.deepEqual(p1.multiplyPolynomial(p2), p1.field.zero());
 		});
 		it('(x) * (x+1) = (x^2 + x)', () => {
 			let p1 = jqrPoly.create([1, 0]);
@@ -97,10 +102,11 @@ describe('polynomial', () => {
 			assert.deepEqual(p1.multiplyPolynomial(p2).getCoefficients(), [2, 3, 2, 1]);
 		});
 	});
+
 	describe('multiplyByMonomial()', () => {
 		it('Should return zero when multiplying by zero', () => {
 			let p1 = jqrPoly.create([1, 3, 2]);
-			assert.equal(p1.multiplyByMonomial(1, 0), p1.field.zero); // 0x
+			assert.deepEqual(p1.multiplyByMonomial(1, 0), p1.field.zero()); // 0x
 		});
 		it('(x) * (x+1) = (x^2 + x)', () => {
 			let p1 = jqrPoly.create([1, 1]);
@@ -111,6 +117,7 @@ describe('polynomial', () => {
 			assert.deepEqual(p1.multiplyByMonomial(2, 2).getCoefficients(), [4, 2, 2, 0, 0]);
 		});
 	});
+
 	describe('add()', () => {
 		it('x + x = 2x', () => {
 			let p1 = jqrPoly.create([1, 0]);
@@ -128,6 +135,7 @@ describe('polynomial', () => {
 			assert.deepEqual(p1.add(p2).getCoefficients(), [3, 2, 0, 1]);
 		});
 	});
+
 	describe('sub()', () => {
 		it('1x - 1x = 0x', () => {
 			let p1 = jqrPoly.create([1, 0]);
@@ -145,6 +153,7 @@ describe('polynomial', () => {
 			assert.deepEqual(p1.sub(p2).getCoefficients(), [3, 0, 0, -1]);
 		});
 	});
+
 	describe('divide()', () => {
 		it('(x^2 + x) / (0) -> error', () => {
 			let p1 = jqrPoly.create([1, 1, 0]);
