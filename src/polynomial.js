@@ -31,6 +31,37 @@ class Polynomial {
 	}
 
 	/**
+   * Build a monomial.
+   * A monomial is, roughly speaking, a polynomial which has only one term.
+   * @param {number} degree - The degree of the  monomial term.
+   * @param {number} coefficient - The coefficient of the monomial term.
+   * @param {object} field - The monomial's' [field]{@link https://en.wikipedia.org/wiki/Field_(mathematics)}.
+   */
+	static buildMonomial(degree, coefficient, field) {
+		field = field || this.field;
+		if (degree < 0) {
+			throw new RangeError('Monomial degree can\'t be lower than zero');
+		}
+		if (coefficient === 0) {
+			return this.field.zero;
+		}
+		let coefficients = utils.newZerosArray(degree + 1);
+		coefficients[0] = coefficient;
+		return _createPolynomial(coefficients, field);
+	}
+
+	/**
+   * Build a monomial.
+   * A monomial is, roughly speaking, a polynomial which has only one term.
+   * @param {number} degree - The degree of the  monomial term.
+   * @param {number} coefficient - The coefficient of the monomial term.
+   * @param {object} field - The monomial's' [field]{@link https://en.wikipedia.org/wiki/Field_(mathematics)}.
+   */
+	buildMonomial(degree, coefficient, field) {
+		return Polynomial.buildMonomial(degree, coefficient, field);
+	}
+
+	/**
 	 * Return the degree of the polynomial.
 	 */
 	getDegree() {
@@ -73,26 +104,6 @@ class Polynomial {
 			return this.coefficients.reduce((acum, coefficient) => this.field.add(acum, coefficient), 0);
 		}
 		return this.coefficients.reduce((acum, coefficient) => this.field.add(this.field.mul(acum, x), coefficient), 0);
-	}
-
-	/**
-	 * Build a monomial.
-	 * A monomial is, roughly speaking, a polynomial which has only one term.
-	 * @param {number} degree - The degree of the  monomial term.
-	 * @param {number} coefficient - The coefficient of the monomial term.
-	 * @param {object} field - The monomial's' [field]{@link https://en.wikipedia.org/wiki/Field_(mathematics)}.
-	 */
-	buildMonomial(degree, coefficient, field) {
-		field = field || this.field;
-		if (degree < 0) {
-			throw new RangeError('Monomial degree can\'t be lower than zero');
-		}
-		if (coefficient === 0) {
-			return this.field.zero();
-		}
-		let coefficients = utils.newZerosArray(degree + 1);
-		coefficients[0] = coefficient;
-		return _createPolynomial(coefficients, field);
 	}
 
 	/**
